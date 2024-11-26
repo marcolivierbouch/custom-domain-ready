@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "//"
+  ],
+  "globalEnv":[
+    "EDGE_CONFIG"
+  ],
+  "tasks": {
+    "build": {
+      "outputs": [
+        "**/dist/**"
+      ]
+    }
+  }
+}

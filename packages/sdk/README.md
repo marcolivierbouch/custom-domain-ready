@@ -1,5 +1,3 @@
-# OpenAssistantGPT SDK: Assistant
+# CustomDomainReady SDK
 
-The object to use as an Assistant Response
-
-- AssistantResponse
+Manage your vercel accounts.
