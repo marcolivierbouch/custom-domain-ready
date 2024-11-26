@@ -11,7 +11,7 @@
   "dependencies": {
     "@customdomainready/sdk": "workspace:*",
     "@vercel/edge-config": "^1.4.0",
-    "next": "14.2.15"
+    "next": "15.0.3"
   },
   "devDependencies": {
     "@customdomainready/tsconfig": "workspace:*",

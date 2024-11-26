@@ -30,7 +30,7 @@
     "eslint-config-customdomainready": "workspace:*",
     "husky": "^9.1.1",
     "lint-staged": "^15.2.7",
-    "next": "15.0.0-canary.23",
+    "next": "15.0.3",
     "playwright": "^1.44.1",
     "prettier": "2.8.8",
     "publint": "0.2.9",
