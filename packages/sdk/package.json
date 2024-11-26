@@ -1,0 +1,76 @@
+{
+  "name": "@customdomainready/sdk",
+  "version": "0.2.1",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist",
+    "dev": "tsup --watch",
+    "lint": "eslint \"./**/*.ts*\"",
+    "type-check": "tsc --noEmit",
+    "prettier-check": "prettier --check \"./**/*.ts*\"",
+    "test": "vitest --config vitest.config.js --run",
+    "test:watch": "vitest --config vitest.config.js"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@customdomainready/tsconfig": "workspace:*",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^20.16.11",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "eslint": "^7.32.0",
+    "eslint-config-customdomainready": "workspace:*",
+    "jsdom": "^24.1.3",
+    "msw": "2.3.1",
+    "react-dom": "^18.3.1",
+    "tsup": "^7.2.0",
+    "typescript": "5.1.3",
+    "zod": "3.23.8"
+  },
+  "peerDependencies": {
+    "react": "^18 || ^19",
+    "zod": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "zod": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://openassistantgpt.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenAssistantGPT/OpenAssistantGPT-SDK.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OpenAssistantGPT/OpenAssistantGPT-SDK/issues"
+  },
+  "keywords": [
+    "ai",
+    "vue"
+  ]
+}

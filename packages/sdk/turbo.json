@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "//"
+  ],
+  "globalEnv": [],
+  "tasks": {
+    "build": {
+      "outputs": [
+        "**/dist/**"
+      ]
+    }
+  }
+}
