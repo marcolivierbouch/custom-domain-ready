@@ -2,6 +2,8 @@
 
 Custom domains are a very valuable feature for enterprise clients in the Saas world. This project will help you add custom domain to your enterprise SaaS using a Vercel Proxy and a basic frontend to manage the API.
 
+This solution is pefect for adding a custom domain on a js file or any type of files that your clients need to import in their website.
+
 ## How to configure Next.JS custom domain proxy deployed in Vercel
 
 For this tutorial you'll need a [Vercel](https://vercel.com/) account.
@@ -19,5 +21,6 @@ VERCEL_PROJECT_ID= # must be the project id of the custom-domain-proxy because t
 AUTH_BEARER_TOKEN= # create your own bearer token that can access the projects
 ```
 
-6. Add a new domain using the configuration-api
-7. Finish the domain configuration
+6. Add a new domain using the configuration-api.
+7. Finish the domain configuration.
+8. Use the proxy with the new domain and slug you added.
