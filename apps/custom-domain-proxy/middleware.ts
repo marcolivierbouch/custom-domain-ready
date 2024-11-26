@@ -15,5 +15,9 @@ export async function middleware(req: Request) {
     const destination = await get(req.url)
     const destinationURL = new URL(destination?.toString() || '')
 
-    NextResponse.rewrite(destinationURL)
+    if (destinationURL) { 
+        NextResponse.rewrite(destinationURL)
+    }
+
+    return new NextResponse('Not Found', { status: 404 });
 }
