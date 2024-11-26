@@ -14,9 +14,8 @@ export async function middleware(req: Request) {
   const destination = await get(key);
   console.log(destination)
 
-  const destinationURL = new URL(destination?.toString() || '');
-
-  if (destinationURL) {
+  if (destination) {
+    const destinationURL = new URL(destination?.toString() || '');
     destinationURL.search = new URL(req.url).search; // Preserve query params
     return NextResponse.rewrite(destinationURL);
   }
