@@ -24,9 +24,15 @@ For this tutorial you'll need a [Vercel](https://vercel.com/) account.
 
 1. Create a new storage [Edge Config](https://vercel.com/docs/storage/edge-config).
 2. Create a new vercel project and import configuration-api.
-3. Create a new project and import custom-domain-proxy.
-4. Connect the storage to the project custom-domain-proxy.
-5. Add the required env vars for the configuration-api
+![image](https://github.com/user-attachments/assets/a32e8dcc-3f23-4890-b887-4a94d8bbbc93)
+
+4. Create a new project and import custom-domain-proxy.
+![image](https://github.com/user-attachments/assets/f7d07dd7-009e-49a3-a3ec-5a6726e422ae)
+
+5. Connect the storage to the project custom-domain-proxy.
+![image](https://github.com/user-attachments/assets/afd55de4-6e2e-412e-898f-a8c8ea05503f)
+
+7. Add the required env vars for the configuration-api
 
 ```bash
 VERCEL_CUSTOM_DOMAIN_PROXY_EDGE_CONFIG_ID= # You can find the edge config id when you click on the storage
@@ -35,6 +41,6 @@ VERCEL_PROJECT_ID= # must be the project id of the custom-domain-proxy because t
 AUTH_BEARER_TOKEN= # create your own bearer token that can access the projects
 ```
 
-6. Add a new domain using the configuration-api.
+6. Add a new domain using the configuration-api using the deployed project.
 7. Finish the domain configuration.
 8. Use the proxy with the new domain and slug you added.
