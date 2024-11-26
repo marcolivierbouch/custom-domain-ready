@@ -2,7 +2,6 @@
   "extends": [
     "//"
   ],
-  "globalEnv": [],
   "tasks": {
     "build": {
       "outputs": [
