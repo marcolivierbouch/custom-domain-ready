@@ -1,2 +1,2 @@
-export * from "@/lib/domains"
-export * from "@/lib/edge-config"
+export * from '@/lib/domains';
+export * from '@/lib/edge-config';

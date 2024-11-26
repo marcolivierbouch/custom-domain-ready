@@ -9,7 +9,7 @@ For this tutorial you'll need a [Vercel](https://vercel.com/) account.
 1. Create a new storage edge config.
 2. Create a new vercel project and import configuration-api.
 3. Create a new project and import custom-domain-proxy.
-4. Connect the storage to the project custom-domain-proxy. 
+4. Connect the storage to the project custom-domain-proxy.
 5. Add the required env vars for the configuration-api
 
 ```bash

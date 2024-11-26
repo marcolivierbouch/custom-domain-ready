@@ -1,4 +1,4 @@
-import CustomDomainConfig from "@/components/custom-domain-config"
+import CustomDomainConfig from '@/components/custom-domain-config';
 
 export default function Home() {
   return (
@@ -6,6 +6,5 @@ export default function Home() {
       <h1 className="text-2xl font-bold mb-6">Custom Domain Ready</h1>
       <CustomDomainConfig />
     </div>
-  )
+  );
 }
-

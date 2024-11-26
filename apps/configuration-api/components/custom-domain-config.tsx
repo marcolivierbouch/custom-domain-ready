@@ -1,39 +1,41 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Trash2, RefreshCw } from 'lucide-react'
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Trash2, RefreshCw } from 'lucide-react';
 
 interface DomainConfig {
-  id: string
-  sourceDomain: string
-  slug: string
-  destinationPath: string
+  id: string;
+  sourceDomain: string;
+  slug: string;
+  destinationPath: string;
 }
 
 export default function CustomDomainConfig() {
-  const [configs, setConfigs] = useState<DomainConfig[]>([])
-  const [newConfig, setNewConfig] = useState<Omit<DomainConfig, "id">>({
-    sourceDomain: "",
-    slug: "",
-    destinationPath: "",
-  })
+  const [configs, setConfigs] = useState<DomainConfig[]>([]);
+  const [newConfig, setNewConfig] = useState<Omit<DomainConfig, 'id'>>({
+    sourceDomain: '',
+    slug: '',
+    destinationPath: '',
+  });
   const fetchConfigs = async () => {
     try {
       const response = await fetch('/api/assign');
       const data = await response.json();
-      console.log(data)
-      setConfigs(data.response.map((domain: any) => ({
-        id: domain.id,
-        sourceDomain: domain.sourceDomain,
-        slug: domain.slug,
-        destinationPath: domain.destinationPath,
-      })));
+      console.log(data);
+      setConfigs(
+        data.response.map((domain: any) => ({
+          id: domain.id,
+          sourceDomain: domain.sourceDomain,
+          slug: domain.slug,
+          destinationPath: domain.destinationPath,
+        })),
+      );
     } catch (error) {
-      console.error("Failed to fetch domain configurations:", error);
+      console.error('Failed to fetch domain configurations:', error);
     }
   };
 
@@ -43,7 +45,9 @@ export default function CustomDomainConfig() {
 
   const handleAddDomainAndAlias = async () => {
     try {
-      const domainExists = configs.some(config => config.sourceDomain === newConfig.sourceDomain);
+      const domainExists = configs.some(
+        config => config.sourceDomain === newConfig.sourceDomain,
+      );
 
       if (!domainExists) {
         const domainResponse = await fetch('/api/domain', {
@@ -76,48 +80,56 @@ export default function CustomDomainConfig() {
       }
 
       const newAlias = await aliasResponse.json();
-      setConfigs((prevConfigs) => [...prevConfigs, newAlias]);
+      setConfigs(prevConfigs => [...prevConfigs, newAlias]);
 
       setNewConfig({
-        sourceDomain: "",
-        slug: "",
-        destinationPath: "",
+        sourceDomain: '',
+        slug: '',
+        destinationPath: '',
       });
-
     } catch (error) {
-      console.error("Error adding domain and alias:", error);
+      console.error('Error adding domain and alias:', error);
     }
   };
-  const removeConfig = async (sourceDomain: string, slug: string, destination: string) => {
+  const removeConfig = async (
+    sourceDomain: string,
+    slug: string,
+    destination: string,
+  ) => {
     try {
       const response = await fetch('/api/assign', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ domain: sourceDomain, slug: slug, destination: destination}),
+        body: JSON.stringify({
+          domain: sourceDomain,
+          slug: slug,
+          destination: destination,
+        }),
       });
 
       if (!response.ok) {
         throw new Error('Failed to remove config');
       }
 
-
       fetchConfigs();
     } catch (error) {
-      console.error("Error removing config:", error);
+      console.error('Error removing config:', error);
     }
-  }
+  };
 
   const refreshDomainStatus = async (sourceDomain: string) => {
     try {
-      const response = await fetch(`/api/domain/${sourceDomain.replace(/^https?:\/\//, '')}/verify`);
+      const response = await fetch(
+        `/api/domain/${sourceDomain.replace(/^https?:\/\//, '')}/verify`,
+      );
       const data = await response.json();
       alert(`Domain Status: ${data.status}`);
     } catch (error) {
-      console.error("Failed to verify domain status:", error);
+      console.error('Failed to verify domain status:', error);
     }
-  }
+  };
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
@@ -125,14 +137,14 @@ export default function CustomDomainConfig() {
         <CardTitle>Custom Domain Configuration</CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+        <form onSubmit={e => e.preventDefault()} className="space-y-4">
           <div className="grid grid-cols-3 gap-4">
             <div>
               <Label htmlFor="sourceDomain">Source Domain</Label>
               <Input
                 id="sourceDomain"
                 value={newConfig.sourceDomain}
-                onChange={(e) =>
+                onChange={e =>
                   setNewConfig({ ...newConfig, sourceDomain: e.target.value })
                 }
                 placeholder="example.com"
@@ -143,7 +155,7 @@ export default function CustomDomainConfig() {
               <Input
                 id="slug"
                 value={newConfig.slug}
-                onChange={(e) =>
+                onChange={e =>
                   setNewConfig({ ...newConfig, slug: e.target.value })
                 }
                 placeholder="blog"
@@ -154,8 +166,11 @@ export default function CustomDomainConfig() {
               <Input
                 id="destinationPath"
                 value={newConfig.destinationPath}
-                onChange={(e) =>
-                  setNewConfig({ ...newConfig, destinationPath: e.target.value })
+                onChange={e =>
+                  setNewConfig({
+                    ...newConfig,
+                    destinationPath: e.target.value,
+                  })
                 }
                 placeholder="/posts"
               />
@@ -166,7 +181,7 @@ export default function CustomDomainConfig() {
 
         <div className="mt-8 space-y-4">
           <h3 className="text-lg font-semibold">Current Configurations</h3>
-          {configs.map((config) => (
+          {configs.map(config => (
             <Card key={config.id}>
               <CardContent className="flex items-center justify-between p-4">
                 <div>
@@ -181,7 +196,13 @@ export default function CustomDomainConfig() {
                   <Button
                     variant="destructive"
                     size="icon"
-                    onClick={() => removeConfig(config.sourceDomain, config.slug, config.destinationPath)}
+                    onClick={() =>
+                      removeConfig(
+                        config.sourceDomain,
+                        config.slug,
+                        config.destinationPath,
+                      )
+                    }
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -199,6 +220,5 @@ export default function CustomDomainConfig() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
-

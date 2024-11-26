@@ -2,21 +2,21 @@ import { NextResponse } from 'next/server';
 import { get } from '@vercel/edge-config';
 
 export const config = {
-    matcher: ['/(.*)'],
+  matcher: ['/(.*)'],
 };
 
 export async function middleware(req: Request) {
-    console.log(req.url)
+  console.log(req.url);
 
-    const urlWithoutProtocol = req.url.replace(/^https?:\/\//, '');
-    const key = urlWithoutProtocol.replace(/\./g, '_').replace(/\//g, '-');
-    const destination = await get(key);
-    const destinationURL = new URL(destination?.toString() || '');
+  const urlWithoutProtocol = req.url.replace(/^https?:\/\//, '');
+  const key = urlWithoutProtocol.replace(/\./g, '_').replace(/\//g, '-');
+  const destination = await get(key);
+  const destinationURL = new URL(destination?.toString() || '');
 
-    if (destinationURL) {
-        destinationURL.search = new URL(req.url).search; // Preserve query params
-        return NextResponse.rewrite(destinationURL);
-    }
+  if (destinationURL) {
+    destinationURL.search = new URL(req.url).search; // Preserve query params
+    return NextResponse.rewrite(destinationURL);
+  }
 
-    return new NextResponse('Not Found', { status: 404 });
+  return new NextResponse('Not Found', { status: 404 });
 }
