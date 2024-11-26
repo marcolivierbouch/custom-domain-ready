@@ -10,7 +10,10 @@ export async function middleware(req: Request) {
 
   const urlWithoutProtocol = req.url.replace(/^https?:\/\//, '');
   const key = urlWithoutProtocol.replace(/\./g, '_').replace(/\//g, '-');
+
   const destination = await get(key);
+  console.log(destination)
+
   const destinationURL = new URL(destination?.toString() || '');
 
   if (destinationURL) {
