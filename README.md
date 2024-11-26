@@ -1,3 +1,17 @@
+``` 
+$$$$$$\                        $$\                                   $$$$$$$\                                    $$\                 $$$$$$$\                            $$\           
+$$  __$$\                       $$ |                                  $$  __$$\                                   \__|                $$  __$$\                           $$ |          
+$$ /  \__|$$\   $$\  $$$$$$$\ $$$$$$\    $$$$$$\  $$$$$$\$$$$\        $$ |  $$ | $$$$$$\   $$$$$$\  $$$$$$\$$$$\  $$\ $$$$$$$\        $$ |  $$ | $$$$$$\   $$$$$$\   $$$$$$$ |$$\   $$\ 
+$$ |      $$ |  $$ |$$  _____|\_$$  _|  $$  __$$\ $$  _$$  _$$\       $$ |  $$ |$$  __$$\  \____$$\ $$  _$$  _$$\ $$ |$$  __$$\       $$$$$$$  |$$  __$$\  \____$$\ $$  __$$ |$$ |  $$ |
+$$ |      $$ |  $$ |\$$$$$$\    $$ |    $$ /  $$ |$$ / $$ / $$ |      $$ |  $$ |$$ /  $$ | $$$$$$$ |$$ / $$ / $$ |$$ |$$ |  $$ |      $$  __$$< $$$$$$$$ | $$$$$$$ |$$ /  $$ |$$ |  $$ |
+$$ |  $$\ $$ |  $$ | \____$$\   $$ |$$\ $$ |  $$ |$$ | $$ | $$ |      $$ |  $$ |$$ |  $$ |$$  __$$ |$$ | $$ | $$ |$$ |$$ |  $$ |      $$ |  $$ |$$   ____|$$  __$$ |$$ |  $$ |$$ |  $$ |
+\$$$$$$  |\$$$$$$  |$$$$$$$  |  \$$$$  |\$$$$$$  |$$ | $$ | $$ |      $$$$$$$  |\$$$$$$  |\$$$$$$$ |$$ | $$ | $$ |$$ |$$ |  $$ |      $$ |  $$ |\$$$$$$$\ \$$$$$$$ |\$$$$$$$ |\$$$$$$$ |
+ \______/  \______/ \_______/    \____/  \______/ \__| \__| \__|      \_______/  \______/  \_______|\__| \__| \__|\__|\__|  \__|      \__|  \__| \_______| \_______| \_______| \____$$ |
+                                                                                                                                                                              $$\   $$ |
+                                                                                                                                                                              \$$$$$$  |
+                                                                                                                                                                               \______/ 
+```
+
 # Custom Domain Ready
 
 Custom domains are a very valuable feature for enterprise clients in the Saas world. This project will help you add custom domain to your enterprise SaaS using a Vercel Proxy and a basic frontend to manage the API.
@@ -8,7 +22,7 @@ This solution is pefect for adding a custom domain on a js file or any type of f
 
 For this tutorial you'll need a [Vercel](https://vercel.com/) account.
 
-1. Create a new storage edge config.
+1. Create a new storage [Edge Config](https://vercel.com/docs/storage/edge-config).
 2. Create a new vercel project and import configuration-api.
 3. Create a new project and import custom-domain-proxy.
 4. Connect the storage to the project custom-domain-proxy.
