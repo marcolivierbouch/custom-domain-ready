@@ -41,7 +41,6 @@ export async function PATCH(
 
         const domainWithoutProtocol = payload.domain.replace(/^https?:\/\//, '');
         const key = `${domainWithoutProtocol.replace(/\./g, '_')}${payload.slug.replace(/\//g, '-')}`;
-        console.log(key)
         
         // validate if key already exist and if yes update it instead of creating
         const existingDomain = await getEdgeconfigItem(key, process.env.VERCEL_CUSTOM_DOMAIN_PROXY_EDGE_CONFIG_ID!, process.env.VERCEL_TEAM_ID, process.env.AUTH_BEARER_TOKEN);
@@ -71,28 +70,26 @@ export async function DELETE(
     try {
         const body = await req.json();
         const payload = customDomainSchema.parse(body);
-
  
         const domainWithoutProtocol = payload.domain.replace(/^https?:\/\//, '');
         const key = `${domainWithoutProtocol.replace(/\./g, '_')}${payload.slug.replace(/\//g, '-')}`;
-        console.log(key)
 
         const existingDomain = await getEdgeconfigItem(key, process.env.VERCEL_CUSTOM_DOMAIN_PROXY_EDGE_CONFIG_ID!, process.env.VERCEL_TEAM_ID, process.env.AUTH_BEARER_TOKEN);
 
         if (existingDomain) {
             const deleteResponse = await removeDomainFromEdgeConfig(key, process.env.VERCEL_CUSTOM_DOMAIN_PROXY_EDGE_CONFIG_ID!, process.env.VERCEL_TEAM_ID, process.env.AUTH_BEARER_TOKEN);
             console.log(deleteResponse);
-            return new Response('deleted', { status: 204 });
+            return NextResponse.json('deleted', { status: 204 });
         } else {
-            return new Response('Domain not found', { status: 404 });
+            return NextResponse.json('Domain not found', { status: 404 });
         }
     } catch (error) {
         console.log(error);
         if (error instanceof z.ZodError) {
-            return new Response(JSON.stringify(error.issues), { status: 422 });
+            return NextResponse.json(JSON.stringify(error.issues), { status: 422 });
         }
 
-        return new Response(null, { status: 500 });
+        return NextResponse.json(null, { status: 500 });
     }
 }
 
