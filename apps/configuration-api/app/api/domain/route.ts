@@ -1,4 +1,4 @@
-import { addDomainToVercel } from "@customdomainready/sdk";
+import { addDomainToVercel, getDomains, getAllItemsFromEdgeConfig } from "@customdomainready/sdk";
 import { NextResponse } from "next/server";
 
 import * as z from "zod"
@@ -17,14 +17,16 @@ export async function POST(
 
         const domain = payload.domain;
 
+        // Check if the domain already exists
+        const existingDomains = await getDomains(process.env.VERCEL_PROJECT_ID!, process.env.VERCEL_TEAM_ID, process.env.AUTH_BEARER_TOKEN);
+        if (existingDomains.domains.some((d: any) => d.name === domain)) {
+            return new Response("Domain already exists", { status: 200 });
+        }
+
         const response = await addDomainToVercel(domain, process.env.VERCEL_PROJECT_ID!, process.env.VERCEL_TEAM_ID, process.env.AUTH_BEARER_TOKEN);
 
         if (response.error) {
             return new Response(response.error.message, { status: 400 })
-        }
-
-        if (response.code === 409) {
-            return new Response("Domain already exists", { status: 409 })
         }
 
         return NextResponse.json({
@@ -36,3 +38,5 @@ export async function POST(
         return new Response("Internal Server Error", { status: 500 })
     }
 }
+
+

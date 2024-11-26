@@ -4,6 +4,21 @@ import {
     DomainVerificationResponse,
 } from "../types";
 
+export const getDomains = async (
+    projectIdVercel: string,
+    teamIdVercel?: string,
+    authBearerToken?: string
+) => {
+    return await fetch(
+        `https://api.vercel.com/v9/projects/${projectIdVercel}/domains${teamIdVercel ? `?teamId=${teamIdVercel}` : ""}`,
+        {
+            headers: {
+                Authorization: `Bearer ${authBearerToken}`,
+            },
+        }
+    ).then((res) => res.json());
+};
+
 export const addDomainToVercel = async (
     domain: string,
     projectIdVercel: string,

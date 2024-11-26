@@ -1,11 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Trash2 } from 'lucide-react'
+import { Trash2, RefreshCw } from 'lucide-react'
 
 interface DomainConfig {
   id: string
@@ -21,16 +21,102 @@ export default function CustomDomainConfig() {
     slug: "",
     destinationPath: "",
   })
+  const fetchConfigs = async () => {
+    try {
+      const response = await fetch('/api/assign');
+      const data = await response.json();
+      console.log(data)
+      setConfigs(data.response.map((domain: any) => ({
+        id: domain.id,
+        sourceDomain: domain.sourceDomain,
+        slug: domain.slug,
+        destinationPath: domain.destinationPath,
+      })));
+    } catch (error) {
+      console.error("Failed to fetch domain configurations:", error);
+    }
+  };
 
-  const addConfig = () => {
-    if (newConfig.sourceDomain && newConfig.slug && newConfig.destinationPath) {
-      setConfigs([...configs, { ...newConfig, id: Date.now().toString() }])
-      setNewConfig({ sourceDomain: "", slug: "", destinationPath: "" })
+  useEffect(() => {
+    fetchConfigs();
+  }, []);
+
+  const handleAddDomainAndAlias = async () => {
+    try {
+      const domainExists = configs.some(config => config.sourceDomain === newConfig.sourceDomain);
+
+      if (!domainExists) {
+        const domainResponse = await fetch('/api/domain', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ domain: newConfig.sourceDomain }),
+        });
+
+        if (!domainResponse.ok) {
+          throw new Error('Failed to add domain');
+        }
+      }
+
+      const aliasResponse = await fetch('/api/assign', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          domain: newConfig.sourceDomain,
+          slug: newConfig.slug,
+          destination: newConfig.destinationPath,
+        }),
+      });
+
+      if (!aliasResponse.ok) {
+        throw new Error('Failed to create alias');
+      }
+
+      const newAlias = await aliasResponse.json();
+      setConfigs((prevConfigs) => [...prevConfigs, newAlias]);
+
+      setNewConfig({
+        sourceDomain: "",
+        slug: "",
+        destinationPath: "",
+      });
+
+    } catch (error) {
+      console.error("Error adding domain and alias:", error);
+    }
+  };
+  const removeConfig = async (sourceDomain: string, slug: string, destination: string) => {
+    try {
+      const response = await fetch('/api/assign', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ domain: sourceDomain, slug: slug, destination: destination}),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to remove config');
+      }
+
+
+      fetchConfigs();
+    } catch (error) {
+      console.error("Error removing config:", error);
     }
   }
 
-  const removeConfig = (id: string) => {
-    setConfigs(configs.filter((config) => config.id !== id))
+  const refreshDomainStatus = async (sourceDomain: string) => {
+    try {
+      const response = await fetch(`/api/domain/${sourceDomain.replace(/^https?:\/\//, '')}/verify`);
+      const data = await response.json();
+      alert(`Domain Status: ${data.status}`);
+    } catch (error) {
+      console.error("Failed to verify domain status:", error);
+    }
   }
 
   return (
@@ -75,7 +161,7 @@ export default function CustomDomainConfig() {
               />
             </div>
           </div>
-          <Button onClick={addConfig}>Add Configuration</Button>
+          <Button onClick={handleAddDomainAndAlias}>Add Configuration</Button>
         </form>
 
         <div className="mt-8 space-y-4">
@@ -91,13 +177,22 @@ export default function CustomDomainConfig() {
                     <strong>Destination:</strong> {config.destinationPath}
                   </p>
                 </div>
-                <Button
-                  variant="destructive"
-                  size="icon"
-                  onClick={() => removeConfig(config.id)}
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
+                <div className="flex space-x-2">
+                  <Button
+                    variant="destructive"
+                    size="icon"
+                    onClick={() => removeConfig(config.sourceDomain, config.slug, config.destinationPath)}
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    onClick={() => refreshDomainStatus(config.sourceDomain)}
+                  >
+                    <RefreshCw className="h-4 w-4" />
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}
