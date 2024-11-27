@@ -23,7 +23,8 @@ export const ParticleBackground: React.FC = () => {
     let animationFrameId: number;
 
     const particles: Particle[] = [];
-    const particleCount = 100;
+    const isMobile = window.innerWidth <= 768; // Assuming mobile if width is 768px or less
+    const particleCount = isMobile ? 25 : 100; // 4 times less particles on mobile
     const connectionDistance = 100;
 
     // Set canvas size
