@@ -50,7 +50,7 @@ export function UserFlow() {
         </h2>
 
         <div className="mb-16 overflow-x-auto">
-          <div className="inline-flex items-center min-w-[800px]">
+          <div className="inline-flex items-center min-w-[800px] hidden md:flex">
             {steps.map((step, index) => (
               <div key={index} className="flex items-center mx-4">
                 <div className="flex flex-col items-center">
