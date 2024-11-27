@@ -33,7 +33,7 @@ export async function GET(req: Request) {
   } catch (error) {
     console.error(error);
 
-    return new Response('Internal Server Error', { status: 500 });
+    return NextResponse.json('Internal Server Error', { status: 500 });
   }
 }
 
@@ -76,14 +76,14 @@ export async function PATCH(req: Request) {
       console.log(createResponse);
     }
 
-    return new Response('created', { status: 201 });
+    return NextResponse.json('created', { status: 201 });
   } catch (error) {
     console.log(error);
     if (error instanceof z.ZodError) {
-      return new Response(JSON.stringify(error.issues), { status: 422 });
+      return NextResponse.json(JSON.stringify(error.issues), { status: 422 });
     }
 
-    return new Response(null, { status: 500 });
+    return NextResponse.json(null, { status: 500 });
   }
 }
 

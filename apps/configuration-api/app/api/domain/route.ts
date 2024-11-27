@@ -1,7 +1,6 @@
 import {
   addDomainToVercel,
   getDomains,
-  getAllItemsFromEdgeConfig,
 } from '@customdomainready/sdk';
 import { NextResponse } from 'next/server';
 
@@ -26,7 +25,7 @@ export async function POST(req: Request) {
       process.env.AUTH_BEARER_TOKEN,
     );
     if (existingDomains.domains.some((d: any) => d.name === domain)) {
-      return new Response('Domain already exists', { status: 200 });
+      return NextResponse.json('Domain already exists', { status: 200 });
     }
 
     const response = await addDomainToVercel(
@@ -37,7 +36,7 @@ export async function POST(req: Request) {
     );
 
     if (response.error) {
-      return new Response(response.error.message, { status: 400 });
+      return NextResponse.json(response.error.message, { status: 400 });
     }
 
     return NextResponse.json({
@@ -46,6 +45,6 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error(error);
 
-    return new Response('Internal Server Error', { status: 500 });
+    return NextResponse.json('Internal Server Error', { status: 500 });
   }
 }

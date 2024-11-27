@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Trash2, RefreshCw } from 'lucide-react';
+import { getDomainResponse } from '@customdomainready/sdk';
 
 interface DomainConfig {
   id: string;
@@ -25,7 +26,6 @@ export default function CustomDomainConfig() {
     try {
       const response = await fetch('/api/assign');
       const data = await response.json();
-      console.log(data);
       setConfigs(
         data.response.map((domain: any) => ({
           id: domain.id,
@@ -61,6 +61,9 @@ export default function CustomDomainConfig() {
         if (!domainResponse.ok) {
           throw new Error('Failed to add domain');
         }
+
+        const response =  await domainResponse.json()
+        alert(JSON.stringify(response))
       }
 
       const aliasResponse = await fetch('/api/assign', {
@@ -74,7 +77,7 @@ export default function CustomDomainConfig() {
           destination: newConfig.destinationPath,
         }),
       });
-
+      
       if (!aliasResponse.ok) {
         throw new Error('Failed to create alias');
       }
@@ -91,6 +94,7 @@ export default function CustomDomainConfig() {
       console.error('Error adding domain and alias:', error);
     }
   };
+
   const removeConfig = async (
     sourceDomain: string,
     slug: string,
@@ -158,7 +162,7 @@ export default function CustomDomainConfig() {
                 onChange={e =>
                   setNewConfig({ ...newConfig, slug: e.target.value })
                 }
-                placeholder="blog"
+                placeholder="/blog"
               />
             </div>
             <div>
@@ -172,7 +176,7 @@ export default function CustomDomainConfig() {
                     destinationPath: e.target.value,
                   })
                 }
-                placeholder="/posts"
+                placeholder="https://www.mywebsite.com/posts"
               />
             </div>
           </div>
