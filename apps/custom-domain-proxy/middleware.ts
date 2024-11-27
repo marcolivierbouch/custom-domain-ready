@@ -12,7 +12,7 @@ export async function middleware(req: Request) {
   const key = urlWithoutProtocol.replace(/\./g, '_').replace(/\//g, '-');
 
   const destination = await get(key);
-  console.log(destination)
+  console.log(destination);
 
   if (destination) {
     const destinationURL = new URL(destination?.toString() || '');
