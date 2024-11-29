@@ -9,7 +9,6 @@ interface Particle {
   dx: number
   dy: number
   size: number
-  pulse: number
 }
 
 export default function DynamicBackground() {
@@ -39,8 +38,7 @@ export default function DynamicBackground() {
           y: Math.random() * canvas.height,
           dx: (Math.random() - 0.5) * 0.1, // Slower movement
           dy: (Math.random() - 0.5) * 0.1, // Slower movement
-          size: Math.random() * 2 + 1,
-          pulse: Math.random() * 100, // Initial pulse state
+          size: Math.random() * 2 + 1
         })
       }
     }
@@ -59,24 +57,12 @@ export default function DynamicBackground() {
         if (particle.y < 0) particle.y = canvas.height
         if (particle.y > canvas.height) particle.y = 0
 
-        // Pulse logic
-        particle.pulse += 1
-        if (particle.pulse > 100) particle.pulse = 0
-
         // Particle drawing
         ctx.beginPath()
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
         ctx.fillStyle = theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)'
         ctx.fill()
 
-        // Draw pulses
-        if (particle.pulse > 95) {
-          ctx.beginPath()
-          ctx.arc(particle.x, particle.y, particle.size + 2, 0, Math.PI * 2)
-          ctx.strokeStyle = theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)'
-          ctx.lineWidth = 1
-          ctx.stroke()
-        }
       })
 
       requestAnimationFrame(animate)
