@@ -43,9 +43,9 @@ const steps = [
 
 export function UserFlow() {
   return (
-    <section className="py-20 bg-black">
+    <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-white">
+        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-foreground">
           How It Works
         </h2>
 
@@ -54,15 +54,15 @@ export function UserFlow() {
             {steps.map((step, index) => (
               <div key={index} className="flex items-center mx-4">
                 <div className="flex flex-col items-center">
-                  <div className="w-24 h-24 rounded-full bg-gray-800 flex items-center justify-center text-white">
+                  <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
                     <step.icon size={40} />
                   </div>
-                  <h3 className="mt-4 text-lg font-semibold text-white text-center">
+                  <h3 className="mt-4 text-lg font-semibold text-foreground text-center">
                     {step.title}
                   </h3>
                 </div>
                 {index < steps.length - 1 && (
-                  <ArrowRight className="text-gray-500 ml-10 mx-4" size={32} />
+                  <ArrowRight className="text-muted-foreground ml-10 mx-4" size={32} />
                 )}
               </div>
             ))}
@@ -71,17 +71,17 @@ export function UserFlow() {
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((step, index) => (
-            <Card key={index} className="bg-gray-900 border-gray-800">
+            <Card key={index}>
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
-                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white mr-4">
+                  <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground mr-4">
                     <step.icon size={24} />
                   </div>
-                  <h3 className="text-xl font-semibold text-white">
+                  <h3 className="text-xl font-semibold text-foreground">
                     {step.title}
                   </h3>
                 </div>
-                <p className="text-gray-400">{step.description}</p>
+                <p className="text-muted-foreground">{step.description}</p>
               </CardContent>
             </Card>
           ))}
@@ -90,3 +90,4 @@ export function UserFlow() {
     </section>
   );
 }
+
