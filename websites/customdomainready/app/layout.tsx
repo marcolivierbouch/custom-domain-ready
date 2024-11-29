@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Custom Domain Ready',
     description: 'Ship custom domain support for your SaaS in less than a day for free',
-    url: 'https://yourdomain.com',
+    url: 'https://customdomainready.com',
     siteName: 'Custom Domain Ready',
     //images: [
     //  {

@@ -39,7 +39,9 @@ export default function Home() {
         <div className="container mx-auto px-4 py-6 flex justify-between items-center">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Custom Domain Ready</h2>
           <div className="flex items-center space-x-4">
-            <Button variant="outline">Get Started</Button>
+            <Link target='_blank' href="https://github.com/marcolivierbouch/custom-domain-ready" passHref>
+              <Button variant="outline">Get Started</Button>
+            </Link>
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors duration-200"
