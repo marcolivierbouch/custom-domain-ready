@@ -11,11 +11,7 @@ export function Footer() {
             &copy; 2024 CustomDomainReady. All rights reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <Button
-              variant="ghost"
-              size="icon"
-              asChild
-            >
+            <Button variant="ghost" size="icon" asChild>
               <Link
                 href="https://github.com/marcolivierbouch/custom-domain-ready"
                 target="_blank"
@@ -31,4 +27,3 @@ export function Footer() {
     </footer>
   );
 }
-

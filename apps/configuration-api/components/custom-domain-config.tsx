@@ -62,8 +62,8 @@ export default function CustomDomainConfig() {
           throw new Error('Failed to add domain');
         }
 
-        const response =  await domainResponse.json()
-        alert(JSON.stringify(response))
+        const response = await domainResponse.json();
+        alert(JSON.stringify(response));
       }
 
       const aliasResponse = await fetch('/api/assign', {
@@ -77,7 +77,7 @@ export default function CustomDomainConfig() {
           destination: newConfig.destinationPath,
         }),
       });
-      
+
       if (!aliasResponse.ok) {
         throw new Error('Failed to create alias');
       }

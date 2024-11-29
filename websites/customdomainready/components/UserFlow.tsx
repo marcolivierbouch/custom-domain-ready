@@ -62,7 +62,10 @@ export function UserFlow() {
                   </h3>
                 </div>
                 {index < steps.length - 1 && (
-                  <ArrowRight className="text-muted-foreground ml-10 mx-4" size={32} />
+                  <ArrowRight
+                    className="text-muted-foreground ml-10 mx-4"
+                    size={32}
+                  />
                 )}
               </div>
             ))}
@@ -90,4 +93,3 @@ export function UserFlow() {
     </section>
   );
 }
-

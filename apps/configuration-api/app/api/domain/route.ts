@@ -1,7 +1,4 @@
-import {
-  addDomainToVercel,
-  getDomains,
-} from '@customdomainready/sdk';
+import { addDomainToVercel, getDomains } from '@customdomainready/sdk';
 import { NextResponse } from 'next/server';
 
 import * as z from 'zod';
