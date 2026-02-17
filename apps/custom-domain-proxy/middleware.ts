@@ -6,19 +6,24 @@ export const config = {
 };
 
 export async function middleware(req: Request) {
-  console.log(req.url);
-
-  const urlWithoutProtocol = req.url.replace(/^https?:\/\//, '');
-  const key = urlWithoutProtocol.replace(/\./g, '_').replace(/\//g, '-');
-
-  const destination = await get(key);
-  console.log(destination);
-
-  if (destination) {
-    const destinationURL = new URL(destination?.toString() || '');
-    destinationURL.search = new URL(req.url).search; // Preserve query params
-    return NextResponse.rewrite(destinationURL);
+  if (!process.env.EDGE_CONFIG) {
+    return NextResponse.next();
   }
 
-  return new NextResponse('Not Found', { status: 404 });
+  try {
+    const urlWithoutProtocol = req.url.replace(/^https?:\/\//, '');
+    const key = urlWithoutProtocol.replace(/\./g, '_').replace(/\//g, '-');
+
+    const destination = await get(key);
+
+    if (destination) {
+      const destinationURL = new URL(destination.toString());
+      destinationURL.search = new URL(req.url).search;
+      return NextResponse.rewrite(destinationURL);
+    }
+  } catch {
+    return NextResponse.next();
+  }
+
+  return NextResponse.next();
 }

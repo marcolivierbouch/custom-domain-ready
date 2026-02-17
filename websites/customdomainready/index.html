@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Domain Ready</title>
+  <meta name="description" content="Ship custom domain support for your SaaS in less than a day for free">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="particles" class="particles" aria-hidden="true"></canvas>
+
+  <header id="header" class="header">
+    <div class="container header-inner">
+      <h2 class="logo">Custom Domain Ready</h2>
+      <div class="header-actions">
+        <a href="https://github.com/marcolivierbouch/custom-domain-ready" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Get Started</a>
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-cta">
+          <a href="https://github.com/marcolivierbouch/custom-domain-ready" target="_blank" rel="noopener noreferrer" class="btn btn-star">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 0z"/></svg>
+            Star us on Github!
+          </a>
+        </div>
+        <h1 class="hero-title">Ship custom domain support<br><span class="hero-subtitle">in less than a day</span></h1>
+        <p class="hero-desc">Totally free — Host your custom domain solution in your Vercel account</p>
+        <div class="hero-actions">
+          <a href="https://github.com/marcolivierbouch/custom-domain-ready" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg">Add custom domains to your SaaS</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted">
+      <div class="container">
+        <h2 class="section-title">Why Use CustomDomainReady?</h2>
+        <ul class="benefits-grid">
+          <li class="benefit">
+            <span class="check" aria-hidden="true">✓</span>
+            <div>
+              <h3>Totally Free</h3>
+              <p>Host your custom domain solution in your Vercel account at no cost.</p>
+            </div>
+          </li>
+          <li class="benefit">
+            <span class="check" aria-hidden="true">✓</span>
+            <div>
+              <h3>Boost Revenue</h3>
+              <p>Add custom domains to your SaaS, allowing you to charge customers more.</p>
+            </div>
+          </li>
+          <li class="benefit">
+            <span class="check" aria-hidden="true">✓</span>
+            <div>
+              <h3>Easy Integration</h3>
+              <p>Ship custom domain support in less than a day.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-muted">
+      <div class="container">
+        <h2 class="section-title">Everything you need to scale</h2>
+        <div class="features-grid">
+          <div class="card">
+            <h3 class="card-title">Infrastructure</h3>
+            <ul class="feature-list">
+              <li><span class="check-sm">✓</span> Built-in CDN</li>
+              <li><span class="check-sm">✓</span> Built-in DDoS protection</li>
+              <li><span class="check-sm">✓</span> Automatic failover and redundancy</li>
+              <li><span class="check-sm">✓</span> 99.999% uptime guarantee</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Security</h3>
+            <ul class="feature-list">
+              <li><span class="check-sm">✓</span> Automatic SSL/TLS certificates</li>
+              <li><span class="check-sm">✓</span> WAF (Web Application Firewall)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Developer Tools</h3>
+            <ul class="feature-list">
+              <li><span class="check-sm">✓</span> Fully automated DNS configuration</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title section-title-lg">How It Works</h2>
+        <div class="flow-grid">
+          <div class="flow-card">
+            <div class="flow-icon">⚙</div>
+            <h3>Configure Custom Domain</h3>
+            <p>User sets up their custom domain using the Configuration API webapp.</p>
+          </div>
+          <div class="flow-card">
+            <div class="flow-icon">🖥</div>
+            <h3>Update Vercel Settings</h3>
+            <p>The system updates Vercel domains and Edge Config with the new domain information.</p>
+          </div>
+          <div class="flow-card">
+            <div class="flow-icon">🌐</div>
+            <h3>User Visits New Domain</h3>
+            <p>When a user enters the new domain in their browser, the request is sent to CustomDomainReady.</p>
+          </div>
+          <div class="flow-card">
+            <div class="flow-icon">👤</div>
+            <h3>Custom Domain Proxy</h3>
+            <p>Our proxy service intercepts the request and determines the correct destination.</p>
+          </div>
+          <div class="flow-card">
+            <div class="flow-icon">📋</div>
+            <h3>User Desired destination</h3>
+            <p>The request is rewritten and redirected to the appropriate website on Vercel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">What Our Users Say</h2>
+        <div class="testimonial">
+          <div class="testimonial-card card">
+            <div class="testimonial-header">
+              <div class="avatar">MO</div>
+              <div>
+                <h3>Marc-Olivier Bouchard</h3>
+                <p class="testimonial-role">Founder, OpenAssistantGPT</p>
+              </div>
+            </div>
+            <p class="testimonial-content">CustomDomainReady has been a game-changer for our SaaS OpenAssistantGPT. We implemented custom domains in just hours, and our customers love it!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>&copy; 2024 CustomDomainReady. All rights reserved.</p>
+        <a href="https://github.com/marcolivierbouch/custom-domain-ready" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

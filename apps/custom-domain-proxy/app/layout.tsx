@@ -1,10 +1,9 @@
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
+import './global.css';
 
 export const metadata = {
-  title: 'CustomDomainReady Example',
-  description: 'Example of using CustomDomainReady in a Next.js website',
+  title: 'Custom Domain Ready',
+  description:
+    'Ship custom domain support for your SaaS in less than a day for free',
 };
 
 export default function RootLayout({
@@ -14,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
